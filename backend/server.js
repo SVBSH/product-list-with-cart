@@ -5,7 +5,7 @@ const path = require('path')
 const fs = require('fs')
 const cors = require('cors')
 
-// app.use(cors())
+app.use(cors())
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {

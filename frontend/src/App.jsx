@@ -2,7 +2,7 @@ import "./App.css";
 import DessertList from "@components/dessertList/DessertList";
 import ShoppingCart from "@components/shoppingCart/ShoppingCart";
 
-import UserCartProvider from "./context/userCartContext";
+import UserCartProvider from "./context/useCartContext";
 
 function App() {
   return (

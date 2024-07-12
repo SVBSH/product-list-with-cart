@@ -5,10 +5,10 @@ import { useState } from "react";
 import {
   useUserCartContext,
   USER_CART_ACTIONS,
-} from "@context/userCartContext";
+} from "@context/useCartContext";
 
 
-function DessertItem({ name, category, price, image }) {
+function DessertItem({ name, category, price, image, thumbnail }) {
   const [counterActive, setCounterActive] = useState(false);
   const [itemCount, setItemCount] = useState(0);
   const { state, dispatch } = useUserCartContext();
@@ -96,6 +96,7 @@ function DessertItem({ name, category, price, image }) {
                       name: name,
                       category: category,
                       price: price,
+                      thumbnail: thumbnail
                     },
                   });
                 }}
@@ -139,6 +140,7 @@ DessertItem.propTypes = {
     tablet: PropTypes.string.isRequired,
     mobile: PropTypes.string.isRequired,
   }).isRequired,
+  thumbnail: PropTypes.string.isRequired,
   //  dispatch: PropTypes.func.isRequired
 };
 

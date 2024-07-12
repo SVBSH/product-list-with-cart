@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-
+// https://medium.com/@seb_5882/a-short-guide-to-reacts-powerful-duo-usereducer-and-usecontext-23cea6f9ab35
 const UserCartContext = createContext();
 
 const cartDefault = {

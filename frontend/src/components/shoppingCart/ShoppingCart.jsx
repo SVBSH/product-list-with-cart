@@ -1,9 +1,10 @@
 import { useState } from "react";
 import emptyCartIllustration from '@assets/illustration-empty-cart.svg'
+import imgCartItemRemove from '@assets/icon-remove-item.svg'
 import {
   useUserCartContext,
   USER_CART_ACTIONS,
-} from "../../context/userCartContext";
+} from "../../context/useCartContext";
 
 function ShoppingCart() {
   const [cartItemCount, setCartItemCount] = useState(0);
@@ -18,11 +19,16 @@ function ShoppingCart() {
         <p className="clr-rose-500 fw-600">Your added items will appear here</p>
       </>
       ) : (
-      <ul className="">
+      <ul className="cart-list">
         {state.items.map((cartItem, index) => (
-          <li key={index}>
-            <p>Name: {cartItem.name}</p>
-            <p>Count: {cartItem.count}</p>
+          <li className="cart-item" key={index}>
+            <h3 className="cart-item-title | fw-600 clr-rose-900">{cartItem.name}</h3>
+            <div className="cart-item-price-info | row">
+              <p className="fw-600 clr-red">{cartItem.count}x</p>
+              <p className="clr-rose-500">@ ${cartItem.price}</p>
+              <p className="clr-rose-500 fw-600">${cartItem.price * cartItem.count}</p>
+            </div>
+            <img className="cart-item-img | clr-rose-500" src={imgCartItemRemove} alt="remove item from cart" />
           </li>
         ))}
       </ul>
