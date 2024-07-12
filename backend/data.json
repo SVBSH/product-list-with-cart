@@ -5,6 +5,7 @@
             "tablet": "/public/images/tablet/image-waffle-tablet.jpg",
             "desktop": "/public/images/desktop/image-waffle-desktop.jpg"
        },
+       "thumbnail": "/public/images/thumbnails/image-waffle-thumbnail.jpg",
        "name": "Waffle with Berries",
        "category": "Waffle",
        "price": 6.50
@@ -15,6 +16,7 @@
             "tablet": "/public/images/tablet/image-creme-brulee-tablet.jpg",
             "desktop": "/public/images/desktop/image-creme-brulee-desktop.jpg"
         },
+        "thumbnail": "/public/images/thumbnails/image-creme-brulee-thumbnail.jpg",
         "name": "Vanilla Bean Crème Brûlée",
         "category": "Crème Brûlée",
         "price": 7.00
@@ -25,6 +27,7 @@
             "tablet": "/public/images/tablet/image-macaron-tablet.jpg",
             "desktop": "/public/images/desktop/image-macaron-desktop.jpg"
         },
+        "thumbnail": "/public/images/thumbnails/image-macaron-thumbnail.jpg",
         "name": "Macaron Mix of Five",
         "category": "Macaron",
         "price": 8.00
@@ -35,6 +38,7 @@
             "tablet": "/public/images/tablet/image-tiramisu-tablet.jpg",
             "desktop": "/public/images/desktop/image-tiramisu-desktop.jpg"
         },
+        "thumbnail": "/public/images/thumbnails/image-tiramisu-thumbnail.jpg",
         "name": "Classic Tiramisu",
         "category": "Tiramisu",
         "price": 5.50
@@ -45,6 +49,7 @@
             "tablet": "/public/images/tablet/image-baklava-tablet.jpg",
             "desktop": "/public/images/desktop/image-baklava-desktop.jpg"
         },
+        "thumbnail": "/public/images/thumbnails/image-baklava-thumbnail.jpg",
         "name": "Pistachio Baklava",
         "category": "Baklava",
         "price": 4.00
@@ -55,6 +60,7 @@
             "tablet": "/public/images/tablet/image-meringue-tablet.jpg",
             "desktop": "/public/images/desktop/image-meringue-desktop.jpg"
         },
+        "thumbnail": "/public/images/thumbnails/image-meringue-thumbnail.jpg",
         "name": "Lemon Meringue Pie",
         "category": "Pie",
         "price": 5.00
@@ -65,6 +71,7 @@
             "tablet": "/public/images/tablet/image-cake-tablet.jpg",
             "desktop": "/public/images/desktop/image-cake-desktop.jpg"
         },
+        "thumbnail": "/public/images/thumbnails/image-cake-thumbnail.jpg",
         "name": "Red Velvet Cake",
         "category": "Cake",
         "price": 4.50
@@ -75,6 +82,7 @@
             "tablet": "/public/images/tablet/image-brownie-tablet.jpg",
             "desktop": "/public/images/desktop/image-brownie-desktop.jpg"
         },
+        "thumbnail": "/public/images/thumbnails/image-brownie-thumbnail.jpg",
         "name": "Salted Caramel Brownie",
         "category": "Brownie",
         "price": 4.50
@@ -85,6 +93,7 @@
             "tablet": "/public/images/tablet/image-panna-cotta-tablet.jpg",
             "desktop": "/public/images/desktop/image-panna-cotta-desktop.jpg"
         },
+        "thumbnail": "/public/images/thumbnails/image-panna-cotta-thumbnail.jpg",
         "name": "Vanilla Panna Cotta",
         "category": "Panna Cotta",
         "price": 6.50
