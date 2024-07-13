@@ -1,10 +1,21 @@
-import "./App.css";
-import DessertList from "@components/dessertList/DessertList";
-import ShoppingCart from "@components/shoppingCart/ShoppingCart";
+import { useState } from "react"
+import "./App.css"
+import DessertList from "@components/dessertList/DessertList"
+import ShoppingCart from "@components/shoppingCart/ShoppingCart"
 
-import UserCartProvider from "./context/useCartContext";
+import UserCartProvider from "./context/useCartContext"
+import DialogOrderConfirmed from "./components/dialogOrderConfirmed/DialogOrderConfirmed"
 
 function App() {
+  const [modal, setModal] = useState(false)
+  function closeModal() {
+    setModal(false)
+  }
+
+  function openModal() {
+    setModal(true)
+  }
+
   return (
     <>
       <UserCartProvider>
@@ -12,12 +23,13 @@ function App() {
           <div className="main-container">
             <h1 className="main-heading text-xl clr-rose-800">Desserts</h1>
             <DessertList />
-            <ShoppingCart />
+            <ShoppingCart openModal={openModal} />
           </div>
+          <DialogOrderConfirmed openModal={modal} closeModal={closeModal} />
         </main>
       </UserCartProvider>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
