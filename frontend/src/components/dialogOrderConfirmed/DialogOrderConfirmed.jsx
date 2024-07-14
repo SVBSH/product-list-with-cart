@@ -13,15 +13,9 @@ function DialogOrderConfirmed({ openModal, closeModal }) {
 
   function completeOrder() {
     closeModal()
-
-    ref.current.addEventListener("animationend", handleAnimationEnd)
-
-    const handleAnimationEnd = () => {
-      dispatch({
-        type: USER_CART_ACTIONS.COMPLETE_ORDER,
-      })
-      ref.current.removeEventListener("animationend", handleAnimationEnd)
-    }
+    dispatch({
+      type: USER_CART_ACTIONS.COMPLETE_ORDER,
+    })
   }
 
   useEffect(() => {
