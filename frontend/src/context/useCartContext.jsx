@@ -35,6 +35,9 @@ const cartFull = {
   ],
   totalPrice: 48,
 }
+
+// const items = new Map()
+
 const cartDefault = {
   items: [],
   totalPrice: 0,

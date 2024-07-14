@@ -498,11 +498,13 @@ h2 {
 
 .btn-confirm-order {
   width: 100%;
-  background-color: hsl(14, 86%, 42%);
+  background-color: var(--clr-red);
+
   padding: 1em;
 
   &:hover {
-    background-color: hsl(14, 77%, 32%);
+    /* https://caniuse.com/css-relative-colors */
+    background-color: hsl(from var(--clr-red) h s 32%);
   }
 }
 
