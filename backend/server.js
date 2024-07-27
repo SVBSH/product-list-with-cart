@@ -4,8 +4,12 @@ const port = 3000
 const path = require('path')
 const fs = require('fs')
 const cors = require('cors')
+const morgan = require('morgan')
 
-app.use(cors())
+
+app.use(morgan('tiny'))
+
+// app.use(cors())
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
