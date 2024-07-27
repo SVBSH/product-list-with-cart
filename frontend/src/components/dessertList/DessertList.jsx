@@ -1,32 +1,25 @@
-import { useEffect, useState } from 'react';
 import DessertItem from "@components/dessertItem/DessertItem";
-import axios from 'axios';
+import useDessertList from "../../hooks/useDessertList";
+
 
 function DessertList() {
-    const [desserts, setDesserts] = useState([]);
+  const [desserts, status] = useDessertList();
 
-    useEffect(() => {
-        axios.get('/api/desserts')
-            .then(response => {
-                setDesserts(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching desserts:', error);
-            });
-    }, []); 
-
-    return (
-        <ul className="desert-list">
-            {desserts.map((dessert, index) => {
-                return (
-                    <DessertItem
-                        key={index}
-                        {...dessert}
-                    />
-                );
-            })}
-        </ul>
-    );
+  return (
+    <ul className="dessert-list">
+      {
+        status === "loading" ? (
+          <div>Loading Desserts...</div>
+        ) : (
+          <ul className="dessert-list">
+            {desserts.map((dessert, index) => (
+              <DessertItem key={index} {...dessert} />
+            ))}
+          </ul>
+        )
+      }
+    </ul>
+  )
 }
 
 export default DessertList;

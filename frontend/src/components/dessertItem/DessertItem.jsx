@@ -40,6 +40,8 @@ function DessertItem({ name, category, price, image, thumbnail }) {
             <source
               srcSet={config.BASE_URL + image.desktop}
               media="(min-width: 925px)"
+              width={240}
+              height={240}
             />
             <source
               srcSet={config.BASE_URL + image.tablet}
