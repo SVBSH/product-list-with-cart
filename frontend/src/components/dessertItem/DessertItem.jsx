@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import AddToCart from "@assets/icon-add-to-cart.svg";
 import config from "@/config";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   useUserCartContext,
   USER_CART_ACTIONS,
@@ -11,11 +11,11 @@ import {
 function DessertItem({ name, category, price, image, thumbnail }) {
   const [counterActive, setCounterActive] = useState(false);
   const { state, dispatch } = useUserCartContext();
-
+  
   function handleCartActivate() {
     setCounterActive(true);
   }
-
+  
   function handleItemCountChange(addition) {
     if (addition !== -1 && addition !== 1) {
       return;
@@ -26,6 +26,12 @@ function DessertItem({ name, category, price, image, thumbnail }) {
       return 0;
     }
   }
+  // reset all counters when cart is empty
+  useEffect(() => {
+    if (state.items.size === 0) {
+      setCounterActive(false);
+    }
+  }, [state.items]);
 
   return (
     <>

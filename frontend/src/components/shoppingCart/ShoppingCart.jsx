@@ -10,11 +10,10 @@ import {
 } from "../../context/useCartContext";
 
 function ShoppingCart({ openModal }) {
-  const [cartItemCount, setCartItemCount] = useState(0);
   const { state, dispatch } = useUserCartContext();
   return (
     <div className="cart-container border-radius-md">
-      <h2 className="text-lg clr-red">Your Cart ({state.items.length})</h2>
+      <h2 className="text-lg clr-red">Your Cart ({state.items.size})</h2>
       {state.totalPrice === 0 ? (
         <>
           <img className="empty-cart" src={emptyCartIllustration} alt="" />
