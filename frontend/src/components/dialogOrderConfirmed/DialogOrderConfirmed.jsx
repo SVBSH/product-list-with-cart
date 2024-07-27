@@ -40,7 +40,9 @@ function DialogOrderConfirmed({ openModal, closeModal }) {
         </h2>
         <p>We hope you enjoy your food!</p>
         <ul className={`${styles["order-list"]} | border-radius-md`}>
-          {state.items.map((cartItem, index) => (
+          {Array.from(state.items.entries()).map(
+              ([key, cartItem], index) => {
+                return (
             <li key={index} className={styles["order-item"]}>
               <img
                 width={48}
@@ -57,12 +59,13 @@ function DialogOrderConfirmed({ openModal, closeModal }) {
                   {cartItem.count}x
                 </p>
                 <p className={styles["order-unit-price"]}>@ {cartItem.price}</p>
-              </div>
-              <p className={styles["order-total-price"]}>
-                ${cartItem.count * cartItem.price}
-              </p>
-            </li>
-          ))}
+                </div>
+                <p className={styles["order-total-price"]}>
+                  ${cartItem.count * cartItem.price}
+                </p>
+              </li>
+            )
+          })}
           <li className={styles["order-total-container"]}>
             <p>Order Total</p>
             <p className="fw-700 text-lg clr-black">${state.totalPrice}</p>

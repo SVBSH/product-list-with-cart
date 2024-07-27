@@ -10,7 +10,6 @@ import {
 
 function DessertItem({ name, category, price, image, thumbnail }) {
   const [counterActive, setCounterActive] = useState(false);
-  const [itemCount, setItemCount] = useState(0);
   const { state, dispatch } = useUserCartContext();
 
   function handleCartActivate() {
@@ -21,15 +20,11 @@ function DessertItem({ name, category, price, image, thumbnail }) {
     if (addition !== -1 && addition !== 1) {
       return;
     }
-    console.log(state);
-    setItemCount((prevItemCount) => {
-      const newCount = prevItemCount + addition;
-      if (newCount <= 0) {
-        setCounterActive(false);
-        return 0;
-      }
-      return newCount;
-    });
+    const newCount = state.items.get(name)?.count ?? 0 + addition
+    if (newCount <= 0) {
+      setCounterActive(false);
+      return 0;
+    }
   }
 
   return (
@@ -87,7 +82,7 @@ function DessertItem({ name, category, price, image, thumbnail }) {
                   <path d="M5 9.375H15V10.625H5V9.375Z" fill="white" />
                 </svg>
               </button>
-              <p>{itemCount}</p>
+              <p>{state.items.get(name)?.count ?? 0}</p>
               <button
                 onClick={() => {
                   handleItemCountChange(1);
@@ -143,7 +138,6 @@ DessertItem.propTypes = {
     mobile: PropTypes.string.isRequired,
   }).isRequired,
   thumbnail: PropTypes.string.isRequired,
-  //  dispatch: PropTypes.func.isRequired
 };
 
 export default DessertItem;

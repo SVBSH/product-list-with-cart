@@ -3,43 +3,43 @@ import { createContext, useContext, useReducer } from "react"
 const UserCartContext = createContext()
 
 const cartFull = {
-  items: [
-    {
+  items: new Map([
+    ["Macaron Mix of Five", {
       name: "Macaron Mix of Five",
       category: "Macaron",
       price: 8,
       thumbnail: "/public/images/thumbnails/image-macaron-thumbnail.jpg",
       count: 2,
-    },
-    {
+    }],
+    ["Vanilla Bean Crème Brûlée", {
       name: "Vanilla Bean Crème Brûlée",
       category: "Crème Brûlée",
       price: 7,
       thumbnail: "/public/images/thumbnails/image-creme-brulee-thumbnail.jpg",
       count: 2,
-    },
-    {
+    }],
+    ["Waffle with Berries", {
       name: "Waffle with Berries",
       category: "Waffle",
       price: 6.5,
       thumbnail: "/public/images/thumbnails/image-waffle-thumbnail.jpg",
       count: 2,
-    },
-    {
+    }],
+    ["Lemon Meringue Pie", {
       name: "Lemon Meringue Pie",
       category: "Pie",
       price: 5,
       thumbnail: "/public/images/thumbnails/image-meringue-thumbnail.jpg",
       count: 1,
-    },
-  ],
+    }],
+  ]),
   totalPrice: 48,
 }
 
 // const items = new Map()
 
 const cartDefault = {
-  items: [],
+  items: new Map(),
   totalPrice: 0,
 }
 
@@ -51,67 +51,54 @@ export const USER_CART_ACTIONS = {
 }
 
 const userCartReducer = (cart, action) => {
-  // if (!action.payload) {
-  //   console.log("Cart - removeItem: Invalid payload")
-  //   return cart
-  // }
   switch (action.type) {
     case USER_CART_ACTIONS.ADD_ITEM: {
-      let found = false
-      const updatedItems = cart.items.map((item) => {
-        if (item.name === action.payload.name) {
-          found = true
-          return { ...item, count: item.count + 1 }
-        }
-        return item
-      })
-
-      if (!found) {
-        console.log("userCart - AddItem: new item was added", action.payload)
-        let newItem = { ...action.payload, count: 1 }
-        return {
-          items: [...cart.items, newItem],
-          totalPrice: cart.totalPrice + action.payload.price,
-        }
+      const newItems = structuredClone(cart.items);
+      let found = cart.items.has(action.payload.name)
+      let newCount = 1;
+      let newItem = cart.items.get(action.payload.name)
+      if (found) {
+        newCount = newItem.count + 1
+      } else {
+        newItem = {...action.payload}
       }
+      newItems.set(action.payload.name, { ...newItem, count: newCount })
+      console.log(`userCart - AddItem: '${action.payload.name}' item was added`)
       return {
-        items: updatedItems,
+        items: newItems,
         totalPrice: cart.totalPrice + action.payload.price,
       }
     }
     case USER_CART_ACTIONS.REMOVE_ITEM: {
-      let searchItem = undefined
-      const updatedItems = cart.items.map((item) => {
-        if (item.name === action.payload.name) {
-          searchItem = { ...item, count: item.count - 1 }
-          return searchItem
-        }
-        return item
-      })
-
-      if (!searchItem) {
+      let found = cart.items.has(action.payload.name)
+      if (!found) {
         return cart
       }
+      
+      const oldItem = cart.items.get(action.payload.name)
 
-      if (searchItem.count <= 0) {
-        const newItems = cart.items.filter(
-          (currentItem) => currentItem.name !== action.payload.name
-        )
-        return {
-          items: newItems,
-          totalPrice: cart.totalPrice - action.payload.price,
-        }
+      const newItems = structuredClone(cart.items)
+      const newCount = oldItem.count - 1
+
+      if (newCount <= 0) {
+        newItems.delete(action.payload.name)
+      } else {
+        newItems.set(action.payload.name, { ...oldItem, count: newCount })
       }
-
+  
       return {
-        items: updatedItems,
+        items: newItems,
         totalPrice: cart.totalPrice - action.payload.price,
       }
     }
     case USER_CART_ACTIONS.REMOVE_ALL_ITEM_INSTANCES: {
-      const newItems = cart.items.filter(
-        (item) => item.name != action.payload.name
-      )
+      if (!cart.items.has(action.payload.name)) {
+        return cart
+      }
+
+      const newItems = structuredClone(cart.items)
+      newItems.delete(action.payload.name)
+
       const priceDiff = action.payload.count * action.payload.price
       return {
         items: newItems,
@@ -121,7 +108,7 @@ const userCartReducer = (cart, action) => {
     case USER_CART_ACTIONS.COMPLETE_ORDER: {
       console.log("lala")
       return {
-        items: [],
+        items: new Map(),
         totalPrice: 0,
       }
     }
@@ -133,7 +120,7 @@ const userCartReducer = (cart, action) => {
 }
 
 const UserCartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(userCartReducer, cartFull)
+  const [state, dispatch] = useReducer(userCartReducer, cartDefault)
 
   return (
     <UserCartContext.Provider value={{ state, dispatch }}>
