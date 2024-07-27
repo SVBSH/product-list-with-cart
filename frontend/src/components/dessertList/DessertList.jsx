@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import DessertItem from "@components/dessertItem/DessertItem";
-import request from '@services/axiosConfig';
+import axios from 'axios';
 
 function DessertList() {
     const [desserts, setDesserts] = useState([]);
 
     useEffect(() => {
-        request.get('/desserts')
+        axios.get('/api/desserts')
             .then(response => {
                 setDesserts(response.data);
             })
