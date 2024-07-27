@@ -1,27 +1,25 @@
-import { useState, useEffect } from "react"
-
+import { useState, useEffect } from 'react'
 
 const useDessertList = () => {
-    const [dessertList, setDessertList] = useState([])
-    const [status, setStatus] = useState("unloaded")
+  const [dessertList, setDessertList] = useState([])
+  const [status, setStatus] = useState('unloaded')
 
+  useEffect(() => {
+    setDessertList([])
+    fetchDesserts()
 
-    useEffect(() => {
-        setDessertList([])
-        fetchDesserts()
-
-        async function fetchDesserts() {
-            setStatus("loading")
-            const apiResponse = await fetch('/api/desserts')
-            if (!apiResponse.ok) {
-                throw new Error(`/api/desserts fetch error`);
-            }
-            const json = await apiResponse.json();
-            setStatus("loaded")
-            setDessertList(json)
-        }
-    }, [])
-    return [dessertList, status]
+    async function fetchDesserts() {
+      setStatus('loading')
+      const apiResponse = await fetch('/api/desserts')
+      if (!apiResponse.ok) {
+        throw new Error(`/api/desserts fetch error`)
+      }
+      const json = await apiResponse.json()
+      setStatus('loaded')
+      setDessertList(json)
+    }
+  }, [])
+  return [dessertList, status]
 }
 
 export default useDessertList

@@ -1,11 +1,10 @@
-import { useState } from "react"
-import "./App.css"
-import DessertList from "@components/dessertList/DessertList"
-import ShoppingCart from "@components/shoppingCart/ShoppingCart"
+import { useState } from 'react'
+import './App.css'
+import DessertList from '@components/dessertList/DessertList'
+import ShoppingCart from '@components/shoppingCart/ShoppingCart'
 
-import UserCartProvider from "./context/useCartContext"
-import DialogOrderConfirmed from "./components/dialogOrderConfirmed/DialogOrderConfirmed"
-
+import UserCartProvider from './context/useCartContext'
+import DialogOrderConfirmed from './components/dialogOrderConfirmed/DialogOrderConfirmed'
 
 function App() {
   const [modal, setModal] = useState(false)
@@ -13,7 +12,7 @@ function App() {
   function toggleModal() {
     setModal(!modal)
   }
-  
+
   return (
     <>
       <UserCartProvider>

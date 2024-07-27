@@ -1,37 +1,33 @@
-import PropTypes from "prop-types";
-import AddToCart from "@assets/icon-add-to-cart.svg";
-import config from "@/config";
-import { useState, useEffect } from "react";
-import {
-  useUserCartContext,
-  USER_CART_ACTIONS,
-} from "@context/useCartContext";
-
+import PropTypes from 'prop-types'
+import AddToCart from '@assets/icon-add-to-cart.svg'
+import config from '@/config'
+import { useState, useEffect } from 'react'
+import { useUserCartContext, USER_CART_ACTIONS } from '@context/useCartContext'
 
 function DessertItem({ name, category, price, image, thumbnail }) {
-  const [counterActive, setCounterActive] = useState(false);
-  const { state, dispatch } = useUserCartContext();
-  
+  const [counterActive, setCounterActive] = useState(false)
+  const { state, dispatch } = useUserCartContext()
+
   function handleCartActivate() {
-    setCounterActive(true);
+    setCounterActive(true)
   }
-  
+
   function handleItemCountChange(addition) {
     if (addition !== -1 && addition !== 1) {
-      return;
+      return
     }
     const newCount = state.items.get(name)?.count ?? 0 + addition
     if (newCount <= 0) {
-      setCounterActive(false);
-      return 0;
+      setCounterActive(false)
+      return 0
     }
   }
   // reset all counters when cart is empty
   useEffect(() => {
     if (state.items.size === 0) {
-      setCounterActive(false);
+      setCounterActive(false)
     }
-  }, [state.items]);
+  }, [state.items])
 
   return (
     <>
@@ -63,15 +59,15 @@ function DessertItem({ name, category, price, image, thumbnail }) {
             <div className="btn-cart btn btn-cart-item-action column">
               <button
                 onClick={() => {
-                  handleItemCountChange(-1);
+                  handleItemCountChange(-1)
 
                   dispatch({
                     type: USER_CART_ACTIONS.REMOVE_ITEM,
                     payload: {
                       name: name,
-                      price: price
+                      price: price,
                     },
-                  });
+                  })
                 }}
               >
                 <svg
@@ -91,7 +87,7 @@ function DessertItem({ name, category, price, image, thumbnail }) {
               <p>{state.items.get(name)?.count ?? 0}</p>
               <button
                 onClick={() => {
-                  handleItemCountChange(1);
+                  handleItemCountChange(1)
 
                   dispatch({
                     type: USER_CART_ACTIONS.ADD_ITEM,
@@ -99,9 +95,9 @@ function DessertItem({ name, category, price, image, thumbnail }) {
                       name: name,
                       category: category,
                       price: price,
-                      thumbnail: thumbnail
+                      thumbnail: thumbnail,
                     },
-                  });
+                  })
                 }}
               >
                 <svg
@@ -124,14 +120,14 @@ function DessertItem({ name, category, price, image, thumbnail }) {
             </div>
           )}
         </div>
-        <div className="flow" style={{ "--flow-space": "0.25em" }}>
+        <div className="flow" style={{ '--flow-space': '0.25em' }}>
           <p className="clr-rose-500">{name}</p>
           <h2>{category}</h2>
           <p className="clr-red fw-700">${price}</p>
         </div>
       </li>
     </>
-  );
+  )
 }
 
 DessertItem.propTypes = {
@@ -144,6 +140,6 @@ DessertItem.propTypes = {
     mobile: PropTypes.string.isRequired,
   }).isRequired,
   thumbnail: PropTypes.string.isRequired,
-};
+}
 
-export default DessertItem;
+export default DessertItem
