@@ -44,11 +44,15 @@ function DessertItem({ name, category, price, image, thumbnail }) {
             <source
               srcSet={config.BASE_URL + image.tablet}
               media="(min-width: 725px)"
+              width={237}
+              height={212}
             />
             <img
               className={'border-radius-md'}
               src={config.BASE_URL + image.mobile}
               alt="MDN"
+              width={327}
+              height={212}
             />
           </picture>
           {!counterActive ? (
