@@ -22,9 +22,10 @@ function DessertItem({ name, category, price, image, thumbnail }) {
       return 0
     }
   }
-  // reset all counters when cart is empty
+  // reset counter when item is removed from cart
   useEffect(() => {
-    if (state.items.size === 0) {
+    const itemInCart = state.items.has(name)
+    if (!itemInCart) {
       setCounterActive(false)
     }
   }, [state.items])
@@ -33,7 +34,7 @@ function DessertItem({ name, category, price, image, thumbnail }) {
     <>
       <li role="list" className="desert-item">
         <div className="container">
-          <picture className="dessert_img">
+          <picture className="dessert_img" data-selected={counterActive}>
             <source
               srcSet={config.BASE_URL + image.desktop}
               media="(min-width: 925px)"
@@ -45,7 +46,7 @@ function DessertItem({ name, category, price, image, thumbnail }) {
               media="(min-width: 725px)"
             />
             <img
-              className="border-radius-md"
+              className={'border-radius-md'}
               src={config.BASE_URL + image.mobile}
               alt="MDN"
             />
@@ -84,7 +85,7 @@ function DessertItem({ name, category, price, image, thumbnail }) {
                   <path d="M5 9.375H15V10.625H5V9.375Z" fill="white" />
                 </svg>
               </button>
-              <p>{state.items.get(name)?.count ?? 0}</p>
+              <p className="clr-white">{state.items.get(name)?.count ?? 0}</p>
               <button
                 onClick={() => {
                   handleItemCountChange(1)
@@ -121,8 +122,8 @@ function DessertItem({ name, category, price, image, thumbnail }) {
           )}
         </div>
         <div className="flow" style={{ '--flow-space': '0.25em' }}>
-          <p className="clr-rose-500">{name}</p>
-          <h2>{category}</h2>
+          <p className="clr-rose-500">{category}</p>
+          <h2>{name}</h2>
           <p className="clr-red fw-700">${price}</p>
         </div>
       </li>
