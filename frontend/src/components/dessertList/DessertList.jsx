@@ -9,11 +9,11 @@ function DessertList() {
       {status === 'loading' ? (
         <div>Loading Desserts...</div>
       ) : (
-        <ul className="dessert-list">
+        <>
           {desserts.map((dessert, index) => (
             <DessertItem key={index} {...dessert} />
           ))}
-        </ul>
+        </>
       )}
     </ul>
   )
