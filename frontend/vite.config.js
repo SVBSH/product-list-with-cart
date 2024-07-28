@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
       },
       proxy: {
         '/api': {
-          target: 'https://product-list-with-cart-weld.vercel.app/',
+          target: 'https://product-list-with-cart-weld.vercel.app',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
           headers: {
