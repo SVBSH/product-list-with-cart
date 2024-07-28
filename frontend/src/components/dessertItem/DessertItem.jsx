@@ -52,7 +52,7 @@ function DessertItem({ name, category, price, image, thumbnail }) {
           {!counterActive ? (
             <button className="btn-cart row" onClick={handleCartActivate}>
               <img src={AddToCart} alt="cart icon" />
-              <p className="text-sm fw-600 clr-rose-900">Add to Cart</p>
+              <span className="text-sm fw-600 clr-rose-900">Add to Cart</span>
             </button>
           ) : (
             <div className="btn-cart btn btn-cart-item-action column">
