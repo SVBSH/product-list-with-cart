@@ -377,7 +377,40 @@ h2 {
     max-height: inherit;
     background-repeat: no-repeat;
   }
+}
 
+.dessert_img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 327 / 212;
+}
+
+.dessert_img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 925px) {
+  .dessert_img {
+    max-width: 240px;
+    aspect-ratio: 240 / 240;
+  }
+}
+
+@media (min-width: 725px) and (max-width: 924px) {
+  .dessert_img {
+    max-width: 237px;
+    aspect-ratio: 237 / 212;
+  }
+}
+
+@media (max-width: 724px) {
+  .dessert_img {
+    max-width: 327px;
+    aspect-ratio: 327 / 212;
+  }
 }
 
 .dessert_img[data-selected="true"] > img {

@@ -33,21 +33,14 @@ function DessertItem({ name, category, price, image, thumbnail }) {
 
   return (
     <>
-      <li role="list" className="desert-item">
+      <li className="desert-item">
         <div className="container">
           <picture className="dessert_img" data-selected={counterActive}>
             <source
               srcSet={apiUrl + image.desktop}
               media="(min-width: 925px)"
-              width={240}
-              height={240}
             />
-            <source
-              srcSet={apiUrl + image.tablet}
-              media="(min-width: 725px)"
-              width={237}
-              height={212}
-            />
+            <source srcSet={apiUrl + image.tablet} media="(min-width: 725px)" />
             <img
               className={'border-radius-md'}
               src={apiUrl + image.mobile}
@@ -59,7 +52,7 @@ function DessertItem({ name, category, price, image, thumbnail }) {
           {!counterActive ? (
             <button className="btn-cart row" onClick={handleCartActivate}>
               <img src={AddToCart} alt="cart icon" />
-              <p className="text-sm fw-600">Add to Cart</p>
+              <p className="text-sm fw-600 clr-rose-900">Add to Cart</p>
             </button>
           ) : (
             <div className="btn-cart btn btn-cart-item-action column">
@@ -128,8 +121,8 @@ function DessertItem({ name, category, price, image, thumbnail }) {
         </div>
         <div className="flow" style={{ '--flow-space': '0.25em' }}>
           <p className="clr-rose-500">{category}</p>
-          <h2>{name}</h2>
-          <p className="clr-red fw-700">${price}</p>
+          <h2 className="fw-600">{name}</h2>
+          <p className="clr-red fw-600">${price}</p>
         </div>
       </li>
     </>
