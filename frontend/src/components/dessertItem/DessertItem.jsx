@@ -3,6 +3,7 @@ import AddToCart from '@assets/icon-add-to-cart.svg'
 import config from '@/config'
 import { useState, useEffect } from 'react'
 import { useUserCartContext, USER_CART_ACTIONS } from '@context/useCartContext'
+const apiUrl = import.meta.env.VITE_API_URL
 
 function DessertItem({ name, category, price, image, thumbnail }) {
   const [counterActive, setCounterActive] = useState(false)
@@ -36,20 +37,20 @@ function DessertItem({ name, category, price, image, thumbnail }) {
         <div className="container">
           <picture className="dessert_img" data-selected={counterActive}>
             <source
-              srcSet={config.BASE_URL + image.desktop}
+              srcSet={apiUrl + image.desktop}
               media="(min-width: 925px)"
               width={240}
               height={240}
             />
             <source
-              srcSet={config.BASE_URL + image.tablet}
+              srcSet={apiUrl + image.tablet}
               media="(min-width: 725px)"
               width={237}
               height={212}
             />
             <img
               className={'border-radius-md'}
-              src={config.BASE_URL + image.mobile}
+              src={apiUrl + image.mobile}
               alt="MDN"
               width={327}
               height={212}
