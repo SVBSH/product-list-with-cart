@@ -35,9 +35,7 @@ function DialogOrderConfirmed({ openModal, closeModal }) {
           src={iconOrderConfirmed}
           alt="order confirmed"
         />
-        <h2 className={`${styles['dialog-title']} | text-xl clr-rose-900`}>
-          Order Confirmed
-        </h2>
+        <h2 className={`text-xl clr-rose-900`}>Order Confirmed</h2>
         <p>We hope you enjoy your food!</p>
         <ul className={`${styles['order-list']} | border-radius-md`}>
           {Array.from(state.items.entries()).map(([key, cartItem], index) => {
