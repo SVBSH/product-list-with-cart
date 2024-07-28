@@ -4,7 +4,7 @@ const apiUrl = import.meta.env.VITE_API_URL
 const useDessertList = () => {
   const [dessertList, setDessertList] = useState([])
   const [status, setStatus] = useState('unloaded')
-
+  console.log(apiUrl)
   useEffect(() => {
     setDessertList([])
     fetchDesserts()
