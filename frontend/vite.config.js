@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
 
       proxy: {
         '/api': {
-          target: 'https://product-list-with-cart-weld.vercel.app',
+          target: 'http://localhost:3000',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
           headers: {
@@ -23,10 +23,6 @@ export default defineConfig(({ mode }) => {
     }
   } else {
     server = {
-      server: {
-        host: '0.0.0.0',
-        port: 5173,
-      },
       proxy: {
         '/api': {
           target: 'https://product-list-with-cart-weld.vercel.app',
