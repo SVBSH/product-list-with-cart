@@ -6,6 +6,8 @@ import { useUserCartContext } from '@context/useCartContext'
 import iconOrderConfirmed from '@assets/icon-order-confirmed.svg'
 import { USER_CART_ACTIONS } from '../../context/useCartContext'
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 // https://medium.com/@dimterion/modals-with-html-dialog-element-in-javascript-and-react-fb23c885d62e
 function DialogOrderConfirmed({ openModal, closeModal }) {
   const ref = useRef()
@@ -45,7 +47,7 @@ function DialogOrderConfirmed({ openModal, closeModal }) {
                   width={48}
                   height={48}
                   className={`${styles['order-img']} | border-radius-md`}
-                  src={config.BASE_URL + cartItem.thumbnail}
+                  src={apiUrl + cartItem.thumbnail}
                   alt="order item"
                 />
                 <p className={`${styles['order-name']} | fw-600`}>
